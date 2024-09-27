@@ -31,9 +31,9 @@ const SidePanel = ({ doctorId, timeSlots, ticketPrice }) => {
     <>
       <div className="shadow-2xl  shadow-outline p-3  lg:p-5 rounded-md mt-10 ml-12">
         <div className="flex items-center justify-between">
-          <p className="text_para mt-0 font-semibold">Ticket Price</p>
+          <p className="text_para  font-semibold">Ticket Price</p>
           <span className="text-[16px] leading-7 lg:text-[19px] lg:leading-8 text-headingColor font-bold ml-6">
-            {ticketPrice} Rupee
+              $ {ticketPrice} 
           </span>
         </div>
 
@@ -42,7 +42,7 @@ const SidePanel = ({ doctorId, timeSlots, ticketPrice }) => {
             Available Time Slots:
           </p>
 
-          <ul className="mt-3">
+          <ul className="mt-3 bg-slate-100 shadow-2xl shadow-outline p-1 lg:p-1 rounded-md">
             {timeSlots?.map((item, index) => (
               <li key={index} className="flex item-center  justify-between mb-2">
                 <p className="text-[15px] leading-6 text-textColor font-semibold">

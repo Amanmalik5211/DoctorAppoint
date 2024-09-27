@@ -5,12 +5,13 @@ import uploadImageToCloudinary from './../../Utils/uploadCloudinary';
 import { BASE_URL, token } from './../../config';
 import Tabs from "./Tabs";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { updateDoctorProfile, fetchDoctorProfile } from '../../redux/slices/doctorProfileSlice.js';
+import axios from 'axios'; 
+// import { useDispatch, useSelector } from 'react-redux';
+// import { updateDoctorProfile, fetchDoctorProfile } from '../../redux/slices/doctorProfileSlice.js';
 
-const Profile = ({ doctorData }) => {
-  const dispatch = useDispatch();
-  const doctorProfile = useSelector((state) => state.doctorProfile.profile);
+const Profile = ({ doctorData, setDoctorData }) => {
+  // const dispatch = useDispatch();
+  // const doctorProfile = useSelector((state) => state.doctorProfile.profile);
   const navigate = useNavigate();
   const [tab, setTab] = useState("overview");
   const [formData, setFormData] = useState({
@@ -61,15 +62,38 @@ const Profile = ({ doctorData }) => {
 
   const updateProfileHandler = async (event) => {
     event.preventDefault();
-    try {
-      const updatedProfile = await dispatch(updateDoctorProfile(formData)).unwrap();
-      toast.success("Profile updated successfully!");
-      dispatch(fetchDoctorProfile()); // Update the profile state after successful update
-    } catch (err) {
-      toast.error(`Error updating profile: ${err.message}`);
-    }
-  };
 
+    try {
+        const doctorId = doctorData._id; // Assuming doctorData contains the doctor ID
+        const response = await axios.put(`${BASE_URL}/doctors/${doctorId}`, formData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (response.status === 200) {
+            toast.success("Profile updated successfully!");
+
+            // Update both doctorData and formData to reflect the changes immediately without refresh
+            const updatedData = response.data;
+            if (setDoctorData) {
+                setDoctorData(updatedData);  // Update the parent state with new data
+            }
+
+            setFormData({
+                ...formData,
+                ...updatedData,  // Update formData with the new values from the server
+            });
+        } else {
+            toast.error("Failed to update profile.");
+        }
+    } catch (err) {
+        toast.error(`Error updating profile: ${err.response?.data?.message || err.message}`);
+    }
+};
+
+
+  
   // Reusable function for adding item..
   const addItem = (key, item) => {
     setFormData(prevFormData => ({ ...prevFormData, [key]: [...prevFormData[key], item] }));

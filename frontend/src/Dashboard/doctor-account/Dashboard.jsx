@@ -12,6 +12,7 @@ import Profile from "./Profile";
 import Appointments from "./Appointments";
 
 const Dashboard = () => {
+  const [doctorData, setDoctorData] = useState(null);
   const capitalizeFirstLetter = (string) => {
     if (!string) return "";
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -23,7 +24,7 @@ const Dashboard = () => {
     `${BASE_URL}/doctors/profile/me`
   );
   const [tab, setTab] = useState("overview");
-  console.log('DatA:', data);
+  // console.log('DatA:', data);
   return (
     <section>
       <div className="max-w-[1170px] px-5 mx-auto">
@@ -100,7 +101,7 @@ const Dashboard = () => {
     )}
 
     {tab === "settings" && (
-      <Profile doctorData={data} />
+      <Profile doctorData={data} setDoctorData={setDoctorData} />
     )}
   </div>
 </div>

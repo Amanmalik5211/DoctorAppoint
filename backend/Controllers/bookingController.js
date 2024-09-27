@@ -8,7 +8,7 @@ export const getCheckoutSession = async(req, res) => {
         // Get currently booked doctor
         const doctor = await Doctor.findById(req.params.doctorId);
         const user = await User.findById(req.userId);
-
+console.log(doctor,'doc')
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
         // Create Stripe checkout session
@@ -23,7 +23,7 @@ export const getCheckoutSession = async(req, res) => {
                 {
                     price_data: {
                         currency: 'usd',
-                        unit_amount: doctor.ticketPrice * 83,
+                        unit_amount: doctor.ticketPrice * 100, 
                         product_data: {
                             name: doctor.name,
                             description: doctor.bio,
@@ -39,7 +39,7 @@ export const getCheckoutSession = async(req, res) => {
         const booking = new Booking({
             doctor: doctor._id,
             user: user._id,
-            ticketPrice: doctor.ticketPrice,
+            ticketPrice: doctor.ticketPrice*100,
             session: session.id
         });
 

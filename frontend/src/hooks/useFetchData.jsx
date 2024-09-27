@@ -12,7 +12,7 @@ const useFetchData = (url) => {
         const res = await fetch(url, {
           headers: { Authorization: `Bearer ${token}` },
         });
-       console.log(res);
+      //  console.log(res,'response');
         if (!res.ok) {
           // Check if there's a message in the response body
           const result = await res.json();
@@ -32,7 +32,7 @@ const useFetchData = (url) => {
     fetchData();
   }, [url]);
 
-  console.log(data, 'data');
+  // console.log(data, 'fetch data');
   return { data, loading, error };
 };
 

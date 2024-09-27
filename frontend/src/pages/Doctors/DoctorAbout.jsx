@@ -81,9 +81,9 @@ const DoctorAbout = ({ name, about, qualifications, experiences }) => {
           </ul>
         </div>
 
-        <div className="lg:hidden w-[300px] mt-12">
+        {/* <div className="lg:hidden w-[300px] mt-12">
           <SidePanel />
-        </div>
+        </div> */}
       </div>
     </>
   );
