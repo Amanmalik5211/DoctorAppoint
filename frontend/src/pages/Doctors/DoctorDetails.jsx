@@ -95,7 +95,6 @@ const DoctorDetails = () => {
 
               <div className="mt-6">
                 {tab === "about" && <DoctorAbout name={name} about={about} qualifications={qualifications} experiences={experiences} />}
-                {tab === "feedback" && <Feedback reviews={reviews} totalRating={totalRating} />}
               </div>
             </div>
 
