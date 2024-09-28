@@ -91,17 +91,6 @@ const DoctorDetails = () => {
                 >
                   About
                 </button>
-
-                <button
-                  onClick={() => setTab("feedback")}
-                  className={`py-2 px-4 md:px-5 mr-3 rounded-xl text-[14px] lg:text-[16px] font-semibold ${
-                    tab === "feedback"
-                      ? "border-[2px] border-black"
-                      : "bg-yellow-300 text-headingColor"
-                  }`}
-                >
-                  Feedback
-                </button>
               </div>
 
               <div className="mt-6">
