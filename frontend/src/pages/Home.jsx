@@ -107,8 +107,8 @@ const Home = () => {
                   <h2 className="text-[30px] flex justify-center items-center font-[600] text-headingColor">
                     30+
                   </h2>
-                  <span className="w-[80px] h-1 bg-yellowColor rounded-full block mt-[-10px]"></span>
-                  <p className="text_para text-center mt-2">
+                  <span className="w-[80px] h-1 bg-yellowColor rounded-full block mt-[-1px]"></span>
+                  <p className="text_para text-center mt-2 text-[22px]">
                     Years of Experience
                   </p>
                 </div>
@@ -118,9 +118,9 @@ const Home = () => {
                   <h2 className="text-[30px] flex justify-center items-center font-[600] text-headingColor">
                     15+
                   </h2>
-                  <span className="w-[80px] h-1 bg-purpleColor rounded-full block mt-[-10px]"></span>
-                  <p className="text_para text-center mt-2  ">
-                    Clinic Locations
+                  <span className="w-[80px] h-1 bg-purpleColor rounded-full block mt-[-1px]"></span>
+                  <p className="text_para text-center mt-2 text-[22px]  ">
+                    Clinic  Locations
                   </p>
                 </div>
 
@@ -129,8 +129,8 @@ const Home = () => {
                   <h2 className="text-[30px] flex justify-center items-center font-[600] text-headingColor">
                     100%
                   </h2>
-                  <span className="w-[80px] h-1 bg-irisBlueColor rounded-full block mt-[-10px]"></span>
-                  <p className="text_para text-center mt-2">
+                  <span className="w-[80px] h-1 bg-irisBlueColor rounded-full block mt-[-1px]"></span>
+                  <p className="text_para text-center mt-2 text-[21px]">
                     Patient Satisfaction
                   </p>
                 </div>
