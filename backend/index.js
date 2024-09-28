@@ -9,42 +9,58 @@ import doctorRoute from './Routes/doctor.js';
 import reviewRouter from './Routes/review.js';
 import bookingRoute from  './Routes/booking.js';
 
-dotenv.config()
+dotenv.config();
 const app = express();
-const port = process.env.Port || 5000;
+const port = process.env.PORT || 5000;
+
+// CORS options to allow both local and production origins
+const allowedOrigins = [
+    'http://localhost:5173',  // Local development origin
+    'https://doctorappoint-frontend.onrender.com'  // Production origin
+];
+
 const corsOptions = {
-    origin :'http://localhost:5173'
-}
-app.get('/', (req,res)=>{
-    res.send('working op this');
-})
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true,  // Allow credentials like cookies, authorization headers
+};
 
-//database connect
-mongoose.set('strictQuery',false)
-const connectDB=async()=>{
+// Test route
+app.get('/', (req, res) => {
+    res.send('working on this');
+});
+
+// Database connection
+mongoose.set('strictQuery', false);
+const connectDB = async () => {
     try {
-      await mongoose.connect(process.env.MONGO_URL,{
-        useNewUrlParser:true,
-        useUnifiedTopology:true,
-       })
-       console.log('Mongodb Database is connected')
-    }  catch (error) {
-       console.log('Mongodb Database connection failed',error)
-        
+        await mongoose.connect(process.env.MONGO_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log('Mongodb Database is connected');
+    } catch (error) {
+        console.log('Mongodb Database connection failed', error);
     }
-}
+};
 
-//middleware
+// Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
-app.use('/api/v1/auth',authRoute)
-app.use('/api/v1/users',userRoute)
-app.use('/api/v1/doctors',doctorRoute)
-app.use('/api/v1/reviews',reviewRouter)
-app.use('/api/v1/bookings',bookingRoute)
+app.use(cors(corsOptions));  // Use updated CORS configuration
+app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/users', userRoute);
+app.use('/api/v1/doctors', doctorRoute);
+app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRoute);
 
-app.listen(port,()=>{
-    console.log('server is running'+ port)
+// Start server
+app.listen(port, () => {
+    console.log('Server is running on port ' + port);
     connectDB();
 });
