@@ -54,22 +54,22 @@ export const getAllDoctor = async (req, res) => {
 
     if (query) {
       doctors = await Doctor.find({
-        isApproved: "approved",
         $or: [
           { name: { $regex: query, $options: 'i' } },
           { specialization: { $regex: query, $options: 'i' } },
         ],
       }).select("-password");
     } else {
-      doctors = await Doctor.find({ isApproved: "approved" }).select("-password");
+      doctors = await Doctor.find().select("-password"); 
     }
     console.log(doctors);
     res.status(200).json({ success: true, message: "Doctors found", data: doctors });
   } catch (error) {
-    console.error("Error fetching doctors:", error); 
+    console.error("Error fetching doctors:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 
 export const getDoctorProfile = async(req,res) =>{
   const doctorId = req.userId;
