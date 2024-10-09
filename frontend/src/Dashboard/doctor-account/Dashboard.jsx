@@ -34,22 +34,7 @@ const Dashboard = () => {
           <div className="grid lg:grid-cols-3 gap-[30px] lg:gap-[50px]">
             <Tabs tab={tab} setTab={setTab} />
             <div className="lg:col-span-2 bg-gradient-to-r from-gray-100 via-gray-300 to-gray-400 p-6 rounded-lg shadow-[0px_10px_30px_rgba(0,0,0,0.5)] transition-all duration-500 hover:shadow-[0px_20px_50px_rgba(0,0,0,0.7)]">
-  {data?.isApproved == "pending" && (
-    <div className="flex p-4 mb-4 text-yellow-800 bg-yellow-100 border-l-4 border-yellow-500 rounded-lg shadow-lg">
-      <svg
-        className="w-6 h-6 mr-2 text-yellow-500"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path d="M12 9v2m0 4h.01m-6.938 4h13.856c.735 0 1.328-.597 1.44-1.328L21 13.5A1.5 1.5 0 0019.5 12H4.5A1.5 1.5 0 003 13.5l.652 5.172c.113.731.706 1.328 1.44 1.328zM12 9V8a4 4 0 00-8 0v4h8zm4 0h8V8a4 4 0 00-8 0v4z" />
-      </svg>
-      <div className="ml-3 text-sm font-medium">
-        Please complete your profile for approval. We'll review it within 3 days.
-      </div>
-    </div>
-  )}
+ 
 
   <div className="mt-6">
     {tab === "overview" && (
