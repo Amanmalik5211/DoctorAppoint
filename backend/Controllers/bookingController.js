@@ -15,7 +15,7 @@ console.log(doctor,'doc')
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             mode: 'payment',
-            success_url: `${process.env.CLIENT_SITE_URL}/checkout-success`,
+            success_url: https://doctorappoint-frontend.onrender.com/checkout-success,
             cancel_url: `${req.protocol}://${req.get('host')}/doctors/${doctor._id}`,
             customer_email: user.email,
             client_reference_id: req.params.doctorId,
