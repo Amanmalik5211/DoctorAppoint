@@ -77,7 +77,7 @@ const Footer = () => {
               <img src={logo} alt="" />
 
               <p className="text-[16px] leading-7 font-[400] text-textColor mt-4">
-                Copyright © {year} developed by Aman Malik all right reserved.
+                Copyright © 2024 developed .
               </p>
 
               <div className="flex item-center gap-3 mt-4">
